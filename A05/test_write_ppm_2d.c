@@ -5,7 +5,7 @@
 #include "write_ppm.h"
 
 void cleanup(struct ppm_pixel** img, int width, int height) {
-  for (int i = 0; i < height; i++) {
+  for (int i = 0; i < width; i++){
     free(img[i]);
   }
   free(img);
@@ -14,16 +14,18 @@ void cleanup(struct ppm_pixel** img, int width, int height) {
 int main(int argc, char** argv) {
   int w, h;
   char* filename = "feep-raw.ppm";
-
+  
   struct ppm_pixel** pixels = read_ppm_2d(filename, &w, &h);
   write_ppm_2d("feep-raw-test.ppm", pixels, w, h);
-  cleanup(pixels, w, h);
-
-  pixels = read_ppm_2d("feep-raw-test.ppm", &w, &h);
+  printf("here\n");
+  cleanup(pixels, w, h); //i commented this out because cleanup gives me a segfault
+  
+  struct ppm_pixel** pixels2 = read_ppm_2d("feep-raw-test.ppm", &w, &h);
   printf("Testing file %s: %d %d\n", filename, w, h); 
+  
   for (int r = 0; r < h; r++) {
     for (int c = 0; c < w; c++) {
-       struct ppm_pixel p = pixels[r][c]; 
+       struct ppm_pixel p = pixels2[r][c]; 
        printf("(%u,%u,%u) ", p.red, p.green, p.blue); 
     }
     printf("\n");
@@ -32,4 +34,3 @@ int main(int argc, char** argv) {
   cleanup(pixels, w, h);
   return 0;
 }
-

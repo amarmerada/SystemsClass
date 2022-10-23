@@ -63,14 +63,14 @@ struct ppm_pixel** read_ppm_2d(const char* filename, int* w, int* h) {
     fread(rtn[i], sizeof(struct ppm_pixel), width, fp);
   }
   fclose(fp);
-  //printpixels(rtn, height, width);
+  printpixels(rtn, height, width);
   *w = width;
   *h = height;
   
   return rtn;
 }
 
-/**int main(int argc, char** argv){
+int main(int argc, char** argv){
   char* nameOfFile = (char*)malloc(argc*sizeof(char*));
   strcpy(nameOfFile, argv[1]);
   int a = 200;
@@ -79,5 +79,5 @@ struct ppm_pixel** read_ppm_2d(const char* filename, int* w, int* h) {
   int*y = &b;
   read_ppm_2d(nameOfFile, x, y);
 return 0;
-}*/
+}
 

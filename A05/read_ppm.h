@@ -24,4 +24,3 @@ extern struct ppm_pixel* read_ppm(const char* filename, int* w, int* h);
 extern struct ppm_pixel** read_ppm_2d(const char* filename, int* w, int* h);
 
 #endif
-
