@@ -25,7 +25,7 @@ struct ppm_pixel** read_ppm_2d(const char* filename, int* w, int* h) {
   fgets(buff, 1024, fp);
   //printf("%s", buff);
   fscanf(fp, "%d %d", &width, &height);
-  //printf("%d %d\n", width, height);
+  printf("%d %d\n", width, height);
   fgets(buff, 1024, fp);
   fgets(buff, 1024, fp);
   //printf("%s", buff);

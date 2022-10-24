@@ -10,13 +10,16 @@
 */
 
 int main(int argc, char** argv) {
-  /*if (argc != 2) {
+  if (argc != 2) {
     printf("usage: glitch <file.ppm>\n");
     return 0;
-  }*/
+  }
 
-  char * filename = "monalisa.ppm";
-  char * outputfile = "monalisa-glitch.ppm";
+  char * filename = argv[1];
+  char * outputfile = malloc(strlen(argv[1])+10);
+  strcpy(outputfile, argv[1]);
+  outputfile[strlen(outputfile)-4] = '\0';
+  strcat(outputfile, "-glitch.ppm");
 
   unsigned char old;
   unsigned char new;
@@ -45,8 +48,9 @@ int main(int argc, char** argv) {
       pixels[i][j].green = oldB;
     }
   } */
-   for (int i = 0; i < 291; i ++){ // should be i < width
+   for (int i = 0; i <h; i ++){ // should be i < width
     for (int j = 0; j < w; j++){
+      //printf("here %d %d\n", i, j);
       old = pixels[i][j].red;
       new = old << (rand() % 2);
       pixels[i][j].red = new;
