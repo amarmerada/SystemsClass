@@ -15,6 +15,8 @@ struct ppm_pixel {
 // NOTE: Caller is responsible for freeing the returned array
 extern struct ppm_pixel* read_ppm(const char* filename, int* w, int* h);
 
+extern void printpixels(struct ppm_pixel**, int h, int w);
+
 // read in a PPM file in binary format
 // filename: the image to load
 // w: pointer argument for returning the width of the image

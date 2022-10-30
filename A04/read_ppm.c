@@ -57,7 +57,7 @@ struct ppm_pixel** read_ppm_2d(const char* filename, int* w, int* h) {
   fgets(buff, 1024, fp);
   printf("%s", buff);
   
-  struct ppm_pixel** rtn = (struct ppm_pixel**)malloc(height*sizeof(struct ppm_pixel));
+  struct ppm_pixel** rtn = (struct ppm_pixel**)malloc(height*width*sizeof(struct ppm_pixel));
   for (int i = 0; i < height; i++){
     rtn[i] = (struct ppm_pixel*)malloc(width*sizeof(struct ppm_pixel));
     fread(rtn[i], sizeof(struct ppm_pixel), width, fp);
