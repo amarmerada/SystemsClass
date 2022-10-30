@@ -33,11 +33,9 @@ int main(int argc, char** argv) {
 
   //printpixels(image, h, w);
 
-  for (int i = 0; i <h; i ++){ // should be i < width
+  for (int i = 0; i <(h); i ++){ // should be i < width
     
-    for (int j = 0; j < w; j++){
-      if((i>489)){
-      }
+    for (int j = 0; j < (w); j++){
       image[i][j].red = image[i][j].red & 0b1;
       image[i][j].green = image[i][j].green & 0b1;
       image[i][j].blue = image[i][j].blue & 0b1;
@@ -46,8 +44,8 @@ int main(int argc, char** argv) {
   //printpixels(image, h, w);
   unsigned char* output = (unsigned char*)malloc(w*h*3*sizeof(unsigned char));
   int s = 0;
-  for(int i = 0; i < w; i++){
-    for(int j = 0; j < h; j++){
+  for(int i = 0; i < (h); i++){
+    for(int j = 0; j < (w); j++){
       output[s] = image[i][j].red;
       s++;
       output[s] = image[i][j].green, 
@@ -89,6 +87,9 @@ int main(int argc, char** argv) {
 
   for (int i = 0; i < (char_capacity); i++){
     printf("%c", text[i]);
+    if(text[i] == '}'){
+      break;
+    }
   }
   free(output);
   
