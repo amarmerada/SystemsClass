@@ -24,9 +24,7 @@ int main(int argc, char** argv) {
   unsigned char oldR;
   unsigned char oldG;
   unsigned char oldB;
-  unsigned char newR;
-  unsigned char newG;
-  unsigned char newB;
+  
 
   int w, h;
   printf("Reading %s ", filename);

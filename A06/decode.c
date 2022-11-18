@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include "read_ppm.h"
 #include <math.h>
+#include <string.h>
+
 
 int BtoD(int* byte){
   int decimal = 0;
   int hold;
   for(int i = 7; i >= 0; i--){
     //printf(" %d ", byte[i]);
-    int hold = byte[i];
+    hold = byte[i];
     decimal += hold * pow(2.0, (double)(7-i));
     
   }
@@ -42,7 +44,7 @@ int main(int argc, char** argv) {
     }
   }
   //printpixels(image, h, w);
-  unsigned char* output = (unsigned char*)malloc(w*h*3*sizeof(unsigned char));
+  unsigned char* output = (unsigned char*)malloc(w*h*3*sizeof(unsigned char) + 2);
   int s = 0;
   for(int i = 0; i < (h); i++){
     for(int j = 0; j < (w); j++){
@@ -61,7 +63,7 @@ int main(int argc, char** argv) {
   
   int final[8];
   int x;
-  char* text = (char*)malloc(char_capacity*sizeof(char));
+  char* text = (char*)malloc(char_capacity*sizeof(char) + 1);
   for(int i = 0; i < s; i += 8){ // for each 8 bit sequence
       final[0] = output[i];
       final[1] = output[i+1];
@@ -73,7 +75,7 @@ int main(int argc, char** argv) {
       final[7] = output[i+7];
       x = BtoD(final);
       // printf("%d, ", x);
-      text[i/8] = x;
+      text[i/8] = x; //char*
       //printf("%c \n", text[i/8]);
 
   }
@@ -87,7 +89,7 @@ int main(int argc, char** argv) {
 
   for (int i = 0; i < (char_capacity); i++){
     printf("%c", text[i]);
-    if(text[i] == '}'){
+    if(text[i] == '\0'){
       break;
     }
   }

@@ -11,12 +11,12 @@ void write_ppm_2d(const char* filename, struct ppm_pixel** pixels, int w, int h)
 
     for (int i = 0; i < (h); i++){ // should be i < h
         for (int j = 0; j < (w); j++){
-            printf("writing to file...\n");
             fwrite(&pixels[i][j].red, 1, 1, fp);
             fwrite(&pixels[i][j].green, 1, 1, fp);
             fwrite(&pixels[i][j].blue, 1, 1, fp);
         }
     }
+    printf("writing to file...\n");
 
 
     fclose(fp);
