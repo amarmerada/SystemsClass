@@ -1,6 +1,6 @@
 #include <stdio.h>
 int main() {
-  unsigned long img;
+  unsigned long img = 0;
   scanf("%lx", &img);
   printf("Image (unsigned long): \n%lx\n", img);
   unsigned long toPrint;
