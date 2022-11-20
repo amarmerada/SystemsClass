@@ -17,6 +17,35 @@ struct chunk {
 };
 
 void memstats(struct chunk* freelist, void* buffer[], int len) {
+  int totalBlocks = 0;
+  int totalMemory = 0;
+  int usedBlocks = 0;
+  int usedMemory = 0;
+  int freeBlocks = 0;
+  int freeMemory = 0;
+  int unusedMemory = 0;
+  struct chunk* fl = freelist;
+
+  while(fl!=NULL){
+    freeBlocks++;
+    freeMemory += fl->size;
+    fl =fl->next;
+  }
+  
+  for(int i = 0; i < len; i++){
+    if(buffer[i] != NULL){
+      usedBlocks++;
+      struct chunk *inUse = (struct chunk *)((struct chunk*) buffer[i] - 1);
+      usedMemory+= inUse->size;
+      unusedMemory+= (inUse->size - inUse->used);
+    }
+  }
+  totalMemory = usedMemory + freeMemory;
+  totalBlocks = usedBlocks + freeBlocks;
+  float undUtil = (float)(unusedMemory)/(float)usedMemory;
+  printf("Total Blocks: %d  Free: %d  Used: %d\n", totalBlocks, freeBlocks, usedBlocks);
+  printf("Total memory allocated: %d  Free memory: %d  Used memory: %d\n", totalMemory, freeMemory, usedMemory);
+  printf("Underutilised: %.2f\n", undUtil);
 }
 
 int main ( int argc, char* argv[]) {
@@ -79,5 +108,5 @@ int main ( int argc, char* argv[]) {
   timer = tend.tv_sec - tstart.tv_sec + (tend.tv_usec - tstart.tv_usec)/1.e6;
   printf("Time is %g\n", timer);
 
-  return 0 ;
+  return 0;
 }
