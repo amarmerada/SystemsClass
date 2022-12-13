@@ -1,9 +1,13 @@
 = Hardware specifications
 
 Where did your run your tests? A laptop, or goldengate?
+A laptop
 
 What are the performance specifications of the machine: number and speed of
 processors, size of RAM? (use `lscpu` and `free -m`)
+12 processors
+2.20 GHz clock speed
+7490 ram ???
 
 = Single-process mandelbrot
 
